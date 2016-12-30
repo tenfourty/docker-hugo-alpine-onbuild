@@ -8,16 +8,17 @@ MAINTAINER Jeremy Brown <jeremy@tenfourty.com>
 ################################################################################
 
 ENV HUGO_VERSION 0.18.1
-ENV HUGO_BINARY hugo_${HUGO_VERSION}_Linux-64bit
+ENV HUGO_TAR hugo_${HUGO_VERSION}_Linux-64bit
+ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
 
 # Install packages curl (for install) and pygments (for syntax highlighting) then download and install Hugo
 RUN apk add --no-cache --update curl py-pygments && \
     mkdir /usr/local/hugo_${HUGO_VERSION} && \
     cd /usr/local/hugo_${HUGO_VERSION} && \
-    curl -L https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tgz | tar zxvf - && \
+    curl -L https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_TAR}.tar.gz | tar zxvf - && \
     apk del curl && \
-    ln -s /usr/local/hugo_${HUGO_VERSION}/hugo /usr/local/bin/hugo_${HUGO_VERSION} && \
-    ln -s /usr/local/hugo_${HUGO_VERSION}/hugo /usr/local/bin/hugo
+    ln -s /usr/local/hugo_${HUGO_VERSION}/${HUGO_BINARY} /usr/local/bin/hugo_${HUGO_VERSION} && \
+    ln -s /usr/local/hugo_${HUGO_VERSION}/${HUGO_BINARY} /usr/local/bin/hugo
 
 # create our /site directory where we will be running this from
 RUN mkdir /site
