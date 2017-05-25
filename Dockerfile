@@ -7,7 +7,7 @@ MAINTAINER Jeremy Brown <jeremy@tenfourty.com>
 #
 ################################################################################
 
-ENV HUGO_VERSION 0.20
+ENV HUGO_VERSION 0.21
 ENV HUGO_TAR hugo_${HUGO_VERSION}_Linux-64bit
 ENV HUGO_DIR hugo_${HUGO_VERSION}_linux_amd64
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
