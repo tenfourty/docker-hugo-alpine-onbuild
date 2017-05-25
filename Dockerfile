@@ -7,13 +7,17 @@ MAINTAINER Jeremy Brown <jeremy@tenfourty.com>
 #
 ################################################################################
 
-ENV HUGO_VERSION 0.18.1
+ENV HUGO_VERSION 0.19
 ENV HUGO_TAR hugo_${HUGO_VERSION}_Linux-64bit
 ENV HUGO_DIR hugo_${HUGO_VERSION}_linux_amd64
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
 
-# Install packages curl (for install) and pygments (for syntax highlighting) then download and install Hugo
-RUN apk add --no-cache --update curl py-pygments && \
+# Install packages
+# - curl (for install)
+# - pygments (for syntax highlighting)
+# - ca-certificates (needs to be updated)
+# then download and install Hugo
+RUN apk add --no-cache --update curl py-pygments ca-certificates && \
     cd /usr/local/ && \
     curl -L https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_TAR}.tar.gz | tar zxvf - && \
     apk del curl && \
