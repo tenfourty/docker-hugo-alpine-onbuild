@@ -9,8 +9,6 @@ MAINTAINER Jeremy Brown <jeremy@tenfourty.com>
 
 ENV HUGO_VERSION 0.20.7
 ENV HUGO_TAR hugo_${HUGO_VERSION}_Linux-64bit
-ENV HUGO_DIR hugo_${HUGO_VERSION}_linux_amd64
-ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
 
 # Install packages
 # - curl (for install)
@@ -18,11 +16,10 @@ ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
 # - ca-certificates (needs to be updated)
 # then download and install Hugo
 RUN apk add --no-cache --update curl py-pygments ca-certificates && \
-    cd /usr/local/ && \
+    cd /usr/local/bin && \
     curl -L https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_TAR}.tar.gz | tar zxvf - && \
     apk del curl && \
-    ln -s /usr/local/${HUGO_DIR}/${HUGO_BINARY} /usr/local/bin/hugo_${HUGO_VERSION} && \
-    ln -s /usr/local/${HUGO_DIR}/${HUGO_BINARY} /usr/local/bin/hugo
+    ln -s /usr/local/bin/hugo /usr/local/bin/hugo_${HUGO_VERSION}
 
 # create our /site directory where we will be running this from
 RUN mkdir /site
