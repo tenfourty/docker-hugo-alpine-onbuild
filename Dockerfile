@@ -29,7 +29,7 @@ WORKDIR /site
 EXPOSE 1313
 
 # by default serve up the local site mounted at /site, ideally from the ONBUILD below
-CMD ["hugo", "server", "--bind", "0.0.0.0", "--cleanDestinationDir", "--forceSyncStatic", "--buildDrafts", "--meminterval=1h", "--memstats=/dev/stdout"]
+CMD ["hugo", "server", "--bind", "0.0.0.0", "--cleanDestinationDir", "--forceSyncStatic", "--buildDrafts", "--meminterval=1h", "--memstats=/dev/stdout", "--source /site", "--config /site/config.toml"]
 
 # add our files from the local folder into this docker image
 ONBUILD COPY site /site
